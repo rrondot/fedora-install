@@ -42,7 +42,14 @@ enabled=1
 gpgcheck=1
 gpgkey=https://rpm.releases.hashicorp.com/gpg
 EOF
-sudo dnf install -y terraform vault packer
+sudo dnf install -y vault packer
+
+TERRAFORM_VERSION="1.13.5"
+wget -q "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+unzip -q "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+sudo mv terraform /usr/local/bin/
+rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+terraform version
 
 brew install terragrunt
 
